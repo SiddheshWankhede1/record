@@ -13,11 +13,29 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up PostgreSQL
-      uses: airtower-luna/setup-postgresql@v1
+    - name: Clone PostgreSQL
+  # You may pin to the exact commit or the version.
+  # uses: MonoidDev/clone-postgresql-action@14a8cb2e24d6e6aa4c25ecaa3a314da2bafd03f2
+      uses: MonoidDev/clone-postgresql-action@v0.0.2
       with:
-        postgresql-version: '13'
-
-    - name: Connect to PostgreSQL and fetch records
-      run: |
-        psql -h localhost -U postgres -d credentials -c 'SELECT * FROM credentials_data;'
+        # Hostname of Source PostgreSQL
+        from-host: localhost
+        # Port of Source PostgreSQL
+        from-port: 5432
+        # Username of Source PostgreSQL
+        from-username: sgpostgres
+        # Password of Source PostgreSQL
+        from-password: Jtrip23@
+        # Database Name of Source PostgreSQL
+        from-database: credentials
+        # Hostname of Remote PostgreSQL
+        to-host: SG-horn-vase-6540-5373-pgsql-master.servers.mongodirector.com
+        # Port of Remote PostgreSQL
+        to-port: 5432
+        # Username of Remote PostgreSQL
+        to-username: sgpostgres
+        # Password of Remote PostgreSQL
+        to-password: cg@G2qt8fahc2Iso
+        # Database Name of Remote PostgreSQL
+        to-database: checkup
+              
