@@ -1,0 +1,23 @@
+name: Fetch Records from PostgreSQL
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  fetch-records:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up PostgreSQL
+      uses: airtower-luna/setup-postgresql@v1
+      with:
+        postgresql-version: '13'
+
+    - name: Connect to PostgreSQL and fetch records
+      run: |
+        psql -h localhost -U postgres -d credentials -c 'SELECT * FROM credentials_data;'
